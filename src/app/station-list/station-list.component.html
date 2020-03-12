@@ -1,0 +1,37 @@
+<mat-table [dataSource]="stations" class="mat-elevation-z8" fxHide.lt-sm="">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"><a routerLink='{{element.code}}'> {{element.name}}</a> </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="t">
+    <mat-header-cell *matHeaderCellDef> Temperatur </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.t}} {{units.t}} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="n">
+    <mat-header-cell *matHeaderCellDef> Niederschlag </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.n}} {{units.n}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="p">
+    <mat-header-cell *matHeaderCellDef> Luftdruck </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.p}} {{units.p}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-list fxHide.gt-xs>
+  <mat-list-item *ngFor="let element of stations">
+    <h4 mat-line><a routerLink='{{element.code}}'> {{element.name}}</a></h4>
+    <p mat-line>{{element.t}} {{units.t}}, {{element.n}} {{units.n}}, {{element.p}} {{units.p}} </p>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+
+</mat-list>

@@ -1,0 +1,137 @@
+<mat-card >
+  <mat-card-title-group>
+    <mat-card-title>{{station.name}} ({{station.altitude}})</mat-card-title>
+    <mat-card-subtitle>Zuletzst Akktualiesiert {{time()}} Uhr, Längengrad {{station.latitude}} breitengrad {{station.longitude}}</mat-card-subtitle>
+  </mat-card-title-group>
+
+  <mat-card-content fxHide.lt-sm>
+    <table>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.t}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.t}}{{units.t}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.rh}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.rh}}{{units.rh}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.p}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.p}}{{units.p}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.n}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.n}}{{units.n}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.dd}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.dd}}{{units.dd}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.ff}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.ff}}{{units.ff}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.sd}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.sd}}{{units.sd}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td> <h3 mat-line>{{descriptions.gs}}</h3></td>
+        <td style="width: 80%"></td>
+        <td> <p mat-line>{{station.gs}}{{units.gs}}</p></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td style="row-span: 4;width: 100%">
+          <div *ngFor="let me of station.measurements" >
+            <h3  *ngIf="me.code == showcode" mat-line>{{me.description}}</h3>
+            <img *ngIf="me.code == showcode" style="width: 60%; margin: auto" src="{{me.imageUrl}}" >
+        </div>
+        <td></td>
+        <td></td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td style="row-span: 4;width: 100%">
+          <av-diagram-item [station]="station"></av-diagram-item>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </mat-card-content>
+
+  <mat-card-content fxHide.gt-xs>
+    <mat-list>
+      <mat-list-item>
+        <h4 mat-line>{{descriptions.t}}</h4>
+        <p mat-line>{{station.t}}{{units.t}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 mat-line>{{descriptions.rh}}</h3>
+        <p mat-line>{{station.rh}}{{units.rh}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 mat-line>{{descriptions.p}}</h3>
+        <p mat-line>{{station.p}}{{units.p}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 mat-line>{{descriptions.n}}</h3>
+        <p mat-line>{{station.n}}{{units.n}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 mat-line>{{descriptions.dd}}</h3>
+        <p mat-line>{{station.dd}}{{units.dd}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 mat-line>{{descriptions.ff}}</h3>
+        <p mat-line>{{station.ff}}{{units.ff}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 mat-line>{{descriptions.sd}}</h3>
+        <p mat-line>{{station.sd}}{{units.sd}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 mat-line>{{descriptions.gs}}</h3>
+        <p mat-line>{{station.gs}}{{units.gs}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+      <div *ngFor="let me of station.measurements" >
+        <img *ngIf="me.code == showcode" style="width: 100%; margin: auto" src="{{me.imageUrl}}" >
+      </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <av-diagram-item [station]="station"></av-diagram-item>
+
+    </mat-list>
+
+  </mat-card-content>
+
+  <a mat-raised-button color='accent'
+     routerLink='/stations/{{sortOrder}}'>
+    Zurück
+    <mat-icon>arrow_forward</mat-icon>
+  </a>
+
+</mat-card>
