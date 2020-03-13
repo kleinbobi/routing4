@@ -48,6 +48,12 @@ export class WeatherService {
         map(rawStations => rawStations.map(rawStation => StationFactory.fromObject(rawStation))),
         map(stations => this.station = stations.find(st => st.code === code)));
   }
+  getStations(s: string) {
+    return this.http.get<any>(API).pipe(
+      map(response => response.rows),
+      map(rawStations => rawStations.map(rawStation => StationFactory.fromObject(rawStation))),
+      map(stations => stations.filter(st => st.name.toLowerCase().startsWith(s.toLowerCase()))));
+  }
   private sort(stations: StationValley[], sortOrder: string): StationValley[] {
     switch (sortOrder) {
       case 'name': {

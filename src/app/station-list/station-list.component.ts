@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StationValley} from '../../shared/station-valley';
 import {WeatherService} from '../../shared/weather-service';
 import {Station} from '../../shared/station';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'av-station-list',
@@ -16,7 +16,7 @@ export class StationListComponent implements OnInit {
   displayedColumns: string[] = ['name', 't', 'n', 'p'];
   descriptions = Station.descriptions;
   units = Station.units;
-  constructor(private ws: WeatherService, private route: ActivatedRoute) {}
+  constructor(private ws: WeatherService, private route: ActivatedRoute, private router: Router) {}
   sortOrder;
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -27,5 +27,10 @@ export class StationListComponent implements OnInit {
     });
   }
 
+  handleStationSelected(station: StationValley) {
+    this.router.navigate(
+      ['/stations', this.sortOrder, station.code]
+    );
+  }
 
 }

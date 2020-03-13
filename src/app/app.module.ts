@@ -7,10 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StationListComponent } from './station-list/station-list.component';
 import { HomeComponent } from './home/home.component';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
-  MatExpansionModule,
-  MatIconModule,
+  MatExpansionModule, MatFormFieldModule,
+  MatIconModule, MatInputModule,
   MatListModule,
   MatTableModule,
   MatTabsModule
@@ -21,6 +22,7 @@ import {WeatherService} from '../shared/weather-service';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { StaionListLineComponent } from './staion-list-line/staion-list-line.component';
+import { SearchStationComponent } from './search-station/search-station.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { StaionListLineComponent } from './staion-list-line/staion-list-line.com
     HomeComponent,
     DiagramItemComponent,
     StationItemComponent,
-    StaionListLineComponent
+    StaionListLineComponent,
+    SearchStationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,10 @@ import { StaionListLineComponent } from './staion-list-line/staion-list-line.com
     MatExpansionModule,
     HttpClientModule,
     FlexLayoutModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]
